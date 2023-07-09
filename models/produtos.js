@@ -14,13 +14,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Produtos.init({
-    produto: DataTypes.STRING,
-    descricao: DataTypes.STRING,
+    produto: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    descricao: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     fornecedor: DataTypes.STRING,
     quantidade: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Produtos',
+    scopes: {
+      semEstoque: {
+        where: {
+          quantidade: "0"
+        }
+      }
+    }
   });
   return Produtos;
 };

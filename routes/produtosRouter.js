@@ -5,6 +5,7 @@ const router = Router()
 
 router.get('/produtos', ProdutosController.tabelaProdutos) // Traz a tabela de produtos
 router.get('/produtos/:id', ProdutosController.listarUmProduto) // Traz um produto diante do id
+router.get('/semestoque', ProdutosController.tabelaProdutosSemEstoque) // traz os produtos sem estoque
 
 router.post('/produtos', ProdutosController.criaProduto) // cria produto para a tabela
 
