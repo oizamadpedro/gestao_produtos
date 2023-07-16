@@ -6,12 +6,9 @@ from frontApp.forms import ProdutoForm
 
 def index(request):
     api = 'http://localhost:3000/produtos'
-
     response = requests.get(api)
-
     if response.status_code == 200:
         data = response.json()
-
     return render(request, 'index.html', {'data': data})
 
 def adicionar(request):
@@ -22,11 +19,8 @@ def adicionar(request):
         if form.is_valid():
             form.save()
             produtoAdicionar = form.cleaned_data
-
             response = requests.post(api, json=produtoAdicionar)
-
             if response.status_code == 200:
-                data = response.json()
                 return redirect('/')
    
     return render(request, 'adicionar.html', {'form': form})
@@ -34,8 +28,6 @@ def adicionar(request):
 def deletar(request, id):
     api = f'http://localhost:3000/produtos/{id}'
     response = requests.delete(api)
-    if response.status_code == 200:
-        data = response.json()
     return redirect('/')
 
 def atualizar(request, id):
