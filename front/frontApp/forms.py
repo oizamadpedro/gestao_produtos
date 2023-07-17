@@ -7,8 +7,8 @@ class ProdutoForm(forms.ModelForm):
         fields = "__all__"
 
         widgets = {
-            'produto': forms.TextInput(),
-            'descricao': forms.TextInput(),
-            'fornecedor': forms.TextInput(),
-            'quantidade': forms.TextInput()
+            'produto': forms.TextInput(attrs={'class': 'form-control'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
+            'fornecedor': forms.TextInput(attrs={'class': 'form-control'}),
+            'quantidade': forms.TextInput(attrs={'class': 'form-control'})
         }

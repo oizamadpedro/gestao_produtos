@@ -1,20 +1,26 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gestao</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
 </head>
 <body>
-    <form action="{% url 'adicionar' %}" method="POST">
-        {% csrf_token %}
-        {% for field in form.visible_fields %}
-            <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                <label for="{{ field.id_for_label }}" style="color:#D9D9D9;">{{field.label}}</label>
-                <div class="fields">{{ field }}</div>
-            </div>
-        {% endfor %}
-        <button type="submit">CONFIRMAR</button>
-    </form>
+    <div class="mx-auto col-10 col-md-8 col-lg-6" style="margin-top: 70px;">
+        <form action="{% url 'adicionar' %}" method="POST" class="d-flex flex-column">
+            {% csrf_token %}
+            
+            {% for field in form.visible_fields %}
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label for="username">{{field.label}}</label>
+                    <div class="fields">{{ field }}</div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">CONFIRMAR</button>
+        </form>
+        <a href="{% url 'index' %}"><button type="submit" class="btn btn-primary" style="margin-top: 30px;">Voltar</button></a>
+    </div>
 </body>
 </html>

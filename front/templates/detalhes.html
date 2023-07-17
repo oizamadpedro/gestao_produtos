@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
+</head>
+<body class="container">
+    
+    <h1 class="text-center">Gestão de Produtos</h1>
+    <div id="mensagemView"></div>
+    <br>
+    <br>
+    <div id="produtos">
+        <h1>DETALHES DO PRODUTO</h1>
+        <table class="table table-hover table-bordered" style="margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th>PRODUTO</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>FORNECEDOR</th>
+                    <th>QUANTIDADE</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td><b>{{  data.produto }}</b></td>
+                        <td>{{  data.descricao }}</td>
+                        <td>{{ data.fornecedor }}</td>
+                        <td><b>{{ data.quantidade }}</b></td>
+                    </tr>
+            </tbody>
+        </table>    
+        <a href="{% url 'index' %}"><button type="submit" class="btn btn-primary">Voltar</button></a>
+        <a href="{% url 'deletar' data.id %}" method="POST"><button type="submit" class="btn btn-primary" style="float: right;">DELETAR</button></a>
+        <a href="{% url 'atualizar' data.id %}"><button type="submit" class="btn btn-primary" style="float: right; margin-right: 5px;">ATUALIZAR</button></a>
+    </div>
+</body>
+</html>

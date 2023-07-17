@@ -27,22 +27,27 @@ def adicionar(request):
 
 def deletar(request, id):
     api = f'http://localhost:3000/produtos/{id}'
-    response = requests.delete(api)
+    requests.delete(api)
     return redirect('/')
 
 def atualizar(request, id):
     api = f'http://localhost:3000/produtos/{id}'
     form = ProdutoForm(request.POST or None)
+    response = requests.get(api)
+    if response.status_code == 200:
+        data = response.json()
+        form = ProdutoForm(initial=data)
 
     if request.method == 'POST' and form.is_valid():
         produtoAtualizar = form.cleaned_data
         response = requests.put(api, json=produtoAtualizar)    
         if response.status_code == 200:
             return redirect('/')
-    
+    return render(request, 'atualizar.html', {'form': form, 'id': id, 'data': data})
+
+def detalhes(request, id):
+    api = f'http://localhost:3000/produtos/{id}'
     response = requests.get(api)
     if response.status_code == 200:
         data = response.json()
-    else:
-        data = None
-    return render(request, 'atualizar.html', {'form': form, 'id': id, 'data': data})
+    return render(request, 'detalhes.html', {'data': data, 'id':id})

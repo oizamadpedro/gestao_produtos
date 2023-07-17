@@ -1,26 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gestao</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
 </head>
 <body>
-    {% if data %}
-        <p>Nome do produto Atual: {{ data.produto }}</p>
-        <p>Descrição do produto Atual: {{ data.descricao }}</p>
-        <p>Fornecedor do produto Atual: {{ data.fornecedor }}</p>
-        <p>Quantidade do produto Atual: {{ data.quantidade }}</p>
-    {% endif %}
-    <form method="POST" action="{% url 'atualizar' id %}">
-        {% csrf_token %}
-        {% for field in form.visible_fields %}
-            <div class="col-12 col-lg-12" style="margin-bottom: 10px;">
-                <label for="{{ field.id_for_label }}" style="color:#D9D9D9;">{{field.label}}</label>
-                <div class="fields">{{ field }}</div>
-            </div>
-        {% endfor %}
-        <button type="submit">CONFIRMAR</button>
-    </form>
+    <div class="mx-auto col-10 col-md-8 col-lg-6" style="margin-top: 30px;">
+        {% if data %}
+        <table class="table table-hover table-bordered" style="margin-top: 10px;">
+            <tr>
+                <td><b>{{ data.produto }}</b> | Descricao: {{  data.descricao }} | Fornecedor: {{ data.fornecedor }} | <b>Quantidade: {{ data.quantidade }}</b>
+                </td>
+            </tr>
+        </table>
+        {% endif %}
+        <form method="POST" action="{% url 'atualizar' id %}" class="d-flex flex-column">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="colFormLabel" style="margin-bottom: 10px;">
+                    <label for="exampleInputEmail1">{{field.label}}</label>
+                    <div class="fields">{{ field }}</div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">CONFIRMAR</button>
+        </form>
+        <a href="{% url 'index' %}"><button type="submit" class="btn btn-primary" style="margin-top: 30px;">Voltar</button></a>
+    </div>  
 </body>
 </html>
