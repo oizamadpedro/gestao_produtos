@@ -33,16 +33,17 @@ def deletar(request, id):
 def atualizar(request, id):
     api = f'http://localhost:3000/produtos/{id}'
     form = ProdutoForm(request.POST or None)
-    response = requests.get(api)
-    if response.status_code == 200:
-        data = response.json()
-        form = ProdutoForm(initial=data)
 
     if request.method == 'POST' and form.is_valid():
         produtoAtualizar = form.cleaned_data
         response = requests.put(api, json=produtoAtualizar)    
         if response.status_code == 200:
             return redirect('/')
+        
+    response = requests.get(api)
+    if response.status_code == 200:
+        data = response.json()
+        form = ProdutoForm(initial=data)
     return render(request, 'atualizar.html', {'form': form, 'id': id, 'data': data})
 
 def detalhes(request, id):
