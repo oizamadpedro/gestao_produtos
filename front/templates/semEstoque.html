@@ -23,15 +23,23 @@
             </thead>
             <tbody>
                 {% for produto in data %}
-                    <tr>
-                        <td><b>{{  produto.produto }}</b> | {{  produto.descricao }}
-                            <a href="{% url 'detalhes' produto.id %}" method="POST"><button type="submit" class="btn btn-primary" style="float: right;">Detalhes</button></a>
-                        </td>
-                    </tr>
+                    {% if produto.id %}
+                        <tr>
+                            <td><b>{{  produto.produto }}</b> | {{  produto.descricao }}
+                                <a href="{% url 'detalhes' produto.id %}" method="POST"><button type="submit" class="btn btn-primary" style="float: right;">Detalhes</button></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td>
+                                <b><p>NENHUM PRODUTO FORA DE ESTOQUE ENCONTRADO.</p></b>
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{% url 'semestoque' %}"><button type="submit" class="btn btn-primary">Sem Estoque</button></a>
+        <a href="{% url 'index' %}"><button type="submit" class="btn btn-primary">Voltar</button></a>
     </div>
 </body>
 </html>

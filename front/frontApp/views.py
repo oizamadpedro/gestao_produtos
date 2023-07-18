@@ -52,3 +52,14 @@ def detalhes(request, id):
     if response.status_code == 200:
         data = response.json()
     return render(request, 'detalhes.html', {'data': data, 'id':id})
+
+def semEstoque(request):
+    api = 'http://localhost:3000/semestoque'
+    response = requests.get(api)
+    data = None
+    if response.status_code == 200:
+        try:
+            data = response.json()
+        except ValueError:
+            data = None
+    return render(request, 'semEstoque.html', {'data': data})

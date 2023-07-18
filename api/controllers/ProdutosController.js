@@ -16,7 +16,7 @@ class ProdutosController {
         try {
             const produtosForaDeEstoque = await Services.procuraProdutoSemEstoque()
             if(produtosForaDeEstoque == ""){
-                return res.status(200).json(new NaoEncontrado("Nenhum produto fora de estoque."))
+                return res.status(404).json(new NaoEncontrado("Nenhum produto fora de estoque."))
             }else{
                 return res.status(200).json(produtosForaDeEstoque);
             }
