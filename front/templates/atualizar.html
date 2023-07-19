@@ -1,13 +1,6 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
-</head>
-<body>
+{% include 'reusable/head.html' %}
+{% block content %}
     <div class="mx-auto col-10 col-md-8 col-lg-6" style="margin-top: 30px;">
         {% if data %}
         <table class="table table-hover table-bordered" style="margin-top: 10px;">
@@ -29,5 +22,4 @@
         </form>
         <a href="{% url 'index' %}"><button type="submit" class="btn btn-primary" style="margin-top: 30px;">Voltar</button></a>
     </div>  
-</body>
-</html>
+{% endblock %}

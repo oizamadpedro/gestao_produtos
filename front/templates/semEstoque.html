@@ -1,20 +1,11 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
-</head>
-<body class="container">
-    
-    <h1 class="text-center">Gestão de Produtos</h1>
+{% include 'reusable/head.html' %}
+{% block content %}
+    <h1 class="text-center">Produtos sem estoque</h1>
     <div id="mensagemView"></div>
     <br>
     <br>
     <div id="produtos">
-        <a href="{% url 'adicionar' %}"><button type="submit" class="btn btn-primary">Adicionar</button></a>
         <table class="table table-hover table-bordered" style="margin-top: 10px;">
             <thead>
                 <tr>
@@ -22,24 +13,10 @@
                 </tr>
             </thead>
             <tbody>
-                {% for produto in data %}
-                    {% if produto.id %}
-                        <tr>
-                            <td><b>{{  produto.produto }}</b> | {{  produto.descricao }}
-                                <a href="{% url 'detalhes' produto.id %}" method="POST"><button type="submit" class="btn btn-primary" style="float: right;">Detalhes</button></a>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td>
-                                <b><p>NENHUM PRODUTO FORA DE ESTOQUE ENCONTRADO.</p></b>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
+                {% include 'utils/foraDoEstoque.html' %}
             </tbody>
         </table>
         <a href="{% url 'index' %}"><button type="submit" class="btn btn-primary">Voltar</button></a>
     </div>
-</body>
-</html>
+
+{% endblock %}

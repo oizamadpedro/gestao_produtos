@@ -1,14 +1,6 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
-</head>
-<body class="container">
-    
+{% include 'reusable/head.html' %}
+{% block content %}
     <h1 class="text-center">Gestão de Produtos</h1>
     <div id="mensagemView"></div>
     <br>
@@ -37,5 +29,4 @@
         <a href="{% url 'deletar' data.id %}" method="POST"><button type="submit" class="btn btn-primary" style="float: right;">DELETAR</button></a>
         <a href="{% url 'atualizar' data.id %}"><button type="submit" class="btn btn-primary" style="float: right; margin-right: 5px;">ATUALIZAR</button></a>
     </div>
-</body>
-</html>
+{% endblock %}

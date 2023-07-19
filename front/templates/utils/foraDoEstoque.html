@@ -1,0 +1,15 @@
+{% load static %}
+{% if data == None %}
+    <tr>
+        <td><b>Sem produto fora de estoque.</b></td>
+    </tr>
+{% endif %}
+{% for produto in data %}
+    {% if produto.id %}
+        <tr>
+            <td><b>{{  produto.produto }}</b> | {{  produto.descricao }}
+                <a href="{% url 'detalhes' produto.id %}" method="POST"><button type="submit" class="btn btn-primary" style="float: right;">Detalhes</button></a>
+            </td>
+        </tr>
+    {% endif %}
+{% endfor %}

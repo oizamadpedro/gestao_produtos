@@ -1,14 +1,6 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'static/css/bootstrap.css' %}">
-</head>
-<body class="container">
-    
+{% include 'reusable/head.html' %}
+{% block content %}
     <h1 class="text-center">Gestão de Produtos</h1>
     <div id="mensagemView"></div>
     <br>
@@ -31,7 +23,10 @@
                 {% endfor %}
             </tbody>
         </table>
+        <h1>Filtros: </h1>
         <a href="{% url 'semestoque' %}"><button type="submit" class="btn btn-primary">Sem Estoque</button></a>
+        <br>
+        <br>
+        <p></p>
     </div>
-</body>
-</html>
+{% endblock %}
