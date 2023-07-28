@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from frontApp.views import index, adicionar, deletar, atualizar, detalhes, semEstoque                                           
+from frontApp.views import index, adicionar, deletar, atualizar, detalhes, semEstoque, cadastrar                                           
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('atualizar/<int:id>', atualizar, name='atualizar'),
     path('detalhes/<int:id>', detalhes, name='detalhes'),
     path('semestoque', semEstoque, name='semestoque'),
+    path('cadastrar', cadastrar, name='cadastrar'),
 ]

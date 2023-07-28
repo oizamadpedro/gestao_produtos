@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 import requests
 from frontApp.forms import ProdutoForm
 
-# Create your views here.
-
 def index(request):
     api = 'http://localhost:3000/produtos'
     response = requests.get(api)
@@ -39,7 +37,6 @@ def atualizar(request, id):
         response = requests.put(api, json=produtoAtualizar)    
         if response.status_code == 200:
             return redirect('/')
-        
     response = requests.get(api)
     if response.status_code == 200:
         data = response.json()
@@ -58,8 +55,12 @@ def semEstoque(request):
     response = requests.get(api)
     data = None
     if response.status_code == 200:
-        try:
-            data = response.json()
-        except ValueError:
-            data = None
+        data = response.json()
     return render(request, 'semEstoque.html', {'data': data})
+
+
+
+# cadastro/login
+
+def cadastrar(request):
+    return render(request, 'usuarios/cadastrar.html')
