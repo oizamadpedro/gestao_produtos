@@ -1,13 +1,29 @@
 {
-    "builds": [{
+    "version": 2,
+    "builds": [
+      {
         "src": "front/frontDjango/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    }],
+      },
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
+    ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "front/frontDjango/wsgi.py"
-        }
+      {
+        "src": "/front/(.*)",
+        "dest": "front/frontDjango/wsgi.py"
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "server.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "front/frontDjango/wsgi.py"
+      }
     ]
-}
+  }
+  
